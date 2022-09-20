@@ -1,0 +1,15 @@
+RewriteEngine on
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.alzhe\.tv$ [NC]
+RewriteRule ^(.*)$ https://www.alzhe.tv/$1 [L,R=301]
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R]
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^ %{REQUEST_URI}.html [NC,L]
+RewriteCond %{THE_REQUEST} /([^.]+)\.xml [NC]
+RewriteRule ^ /%1 [NC,L,R]
+RewriteCond %{REQUEST_FILENAME}.xml -f
+RewriteRule ^ %{REQUEST_URI}.xml [NC,L]
+
+ErrorDocument 404 https://www.alzhe.tv/404
